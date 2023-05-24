@@ -1,6 +1,7 @@
 import express from "express"
 import viewEngine from "./config/viewEngine"
 import initWebRouter from "./route/web"
+import connectDB from "./config/connectDB"
 
 require('dotenv').config()
 
@@ -15,7 +16,9 @@ viewEngine(app)
 
 initWebRouter(app)
 
+connectDB()
+
 app.listen(port, () => {
-    console.log('backend nodejs')
+    console.log(port)
 })
 

@@ -1,0 +1,21 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+</head>
+<body>
+    <div>
+        <h1>Home</h1>
+        <h1><%for(let i=0;i<data.length;i++){%>
+                <span><%= data[i].id%></span>
+                <span><%= data[i].firstName %></span>
+                <span><%= data[i].lastName%></span>
+                <span><%= data[i].email%></span>
+                <br/>
+            <%}%>
+        </h1>
+    </div>
+</body>
+</html>
