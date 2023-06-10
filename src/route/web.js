@@ -20,8 +20,22 @@ let initWebRouter = (app) => {    /// tao tat ca cac router cho website
     // delete user
     router.get("/delete-crud", homeController.deleteCRUD)
 
-    router.post("/api/login", userController.handleLogin)
 
+    // api post user
+    router.post("/api/login", userController.handleLogin)
+    //api get users
+    router.get("/api/get-all-users", userController.getAllUser)
+    // api add uesr
+    router.post("/api/create-new-user", userController.createNewUser)
+    // api delete user
+    router.delete("/api/delete-user", userController.deleteUser)
+    //api edit user
+    router.put("/api/edit-user", userController.editUser)
+
+    // api get allCode
+    router.get('/api/allcode', userController.getAllCode)
+
+    
     return app.use("/", router)
 }
 

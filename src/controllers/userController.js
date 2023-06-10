@@ -10,7 +10,7 @@ let handleLogin = async(req, res) => {
     if(!email || !password){
         return res.status("500").json({
             errCode: 1,
-            message: "missing input parameter",
+            errorMessage: "Missing input parameter",
         })
     }
 
@@ -22,6 +22,47 @@ let handleLogin = async(req, res) => {
     })
 }
 
+let getAllUser = async(req, res) => {
+    let {id} = req.query
+
+    if(!id){
+        return res.status(200).json({
+        errCode: 1,
+        errMessage: "Missing required parameters",
+        users: {},
+    })
+    }
+
+    let users = await userService.handleGetAllUser(id)
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: "ok",
+        users: users,
+    })
+}
+
+let createNewUser = async (req, res) => {
+    let message = await userService.handleCreateNewUser(req.body)
+    return res.status(200).json(message)
+}
+
+let deleteUser = async(req, res) => {
+    let message = await userService.handleDeleteUser(req.body.id)
+    return res.status(200).json(message)
+}
+
+let editUser = async(req, res) => {
+    let data = req.body
+    let message = await userService.handleEditUser(data)
+    return res.status(200).json(message)
+}
+
+ let getAllCode = async(req, res) => {
+    const {type} = req.query
+    let data = await userService.handleGetAllCode(type)
+    return res.status(200).json(data)
+ }
+
 export {
-    handleLogin,
+    handleLogin, getAllUser, createNewUser, deleteUser, editUser, getAllCode
 }
