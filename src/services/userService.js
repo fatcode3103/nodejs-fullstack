@@ -11,7 +11,7 @@ let handleUserLogin = (email, password) => {
             if(isExist){
                 let user = await db.User.findOne({
                     where: {email: email},
-                    attributes: ['email', 'roleId', 'password'],
+                    attributes: ['email', 'roleId', 'password', 'firstName', 'lastName'],
                     raw: true
                 })
                 if(user){
@@ -90,7 +90,6 @@ let handleCheckEmail = (email) => {
 
 let handleCreateNewUser = (data) => {
     return new Promise(async(resolve, reject) => {
-
         try{
             let checkEmail = await handleCheckEmail(data.email)
             if(!checkEmail){
@@ -101,9 +100,11 @@ let handleCreateNewUser = (data) => {
                     firstName: data.firstName,
                     lastName: data.lastName,
                     address: data.address,
-                    gender: data.gender === '1' ? true : false,
+                    gender: data.gender,
                     roleId: data.roleId,
                     phoneNumber: data.phoneNumber,
+                    positionId: data.positionId,
+                    image: data.image
                 })
                 resolve({
                     errCode: 0,
@@ -162,6 +163,8 @@ let handleEditUser = (data) => {
                     gender: data.gender,
                     roleId: data.roleId,
                     phoneNumber: data.phoneNumber,
+                    positionId: data.positionId,
+                    image: data.image
                 })
                 await user.save();
                 resolve({

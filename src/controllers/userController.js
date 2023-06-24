@@ -58,9 +58,9 @@ let editUser = async(req, res) => {
 }
 
  let getAllCode = async(req, res) => {
-    const {type} = req.query
-    let data = await userService.handleGetAllCode(type)
-    return res.status(200).json(data)
+        const {type} = req.query
+        let data = await userService.handleGetAllCode(type)
+        return res.status(200).json(data)
  }
 
 export {
