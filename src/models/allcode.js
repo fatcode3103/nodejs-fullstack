@@ -17,8 +17,9 @@ module.exports = (sequelize, DataTypes) => {
                 foreignKey: "gender",
                 as: "genderData",
             });
-            Allcode.belongsTo(models.User, {
-                foreignKey: "doctorId",
+            Allcode.hasMany(models.Schedule, {
+                foreignKey: "timeType",
+                as: "timeData",
             });
         }
     }

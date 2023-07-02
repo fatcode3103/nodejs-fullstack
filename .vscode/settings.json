@@ -1,4 +1,8 @@
 {
-    "editor.cursorBlinking": "expand",
-    "editor.cursorSmoothCaretAnimation": "on"
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "prettier.tabWidth": 4,
+  "editor.cursorStyle": "line"
 }

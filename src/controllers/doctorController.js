@@ -58,4 +58,69 @@ const getDetailDoctorById = async (req, res) => {
     }
 };
 
-export { getTopDoctorHome, getAllDoctor, postInfoDoctor, getDetailDoctorById };
+const updateDetailDoctor = async (req, res) => {
+    try {
+        let mess = await doctorSevice.handleUpdateDetailDoctor(req.body);
+        return res.status(200).json(mess);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errorCode: -1,
+            message: "Error from the server",
+        });
+    }
+};
+
+const getAllCodeHours = async (req, res) => {
+    try {
+        let mess = await doctorSevice.handleGetAllCodeHours(req.query.type);
+        return res.status(200).json(mess);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errorCode: -1,
+            message: "Error from the server",
+        });
+    }
+};
+
+const postBulkCreateSchedule = async (req, res) => {
+    try {
+        let mess = await doctorSevice.handlePostBulkCreateSchedule(req.body);
+        return res.status(200).json(mess);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errorCode: -1,
+            message: "Error from the server",
+        });
+    }
+};
+
+const getScheduleDoctorByDate = async (req, res) => {
+    const { doctorId, date } = req.query;
+    try {
+        let data = await doctorSevice.handleGetScheduleDoctorByDate(
+            doctorId,
+            date
+        );
+        return res.status(200).json(data);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errorCode: -1,
+            message: "Error from the server",
+        });
+    }
+};
+
+export {
+    getTopDoctorHome,
+    getAllDoctor,
+    postInfoDoctor,
+    getDetailDoctorById,
+    updateDetailDoctor,
+    getAllCodeHours,
+    postBulkCreateSchedule,
+    getScheduleDoctorByDate,
+};
